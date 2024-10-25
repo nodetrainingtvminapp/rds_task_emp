@@ -43,6 +43,21 @@ This is a sample structure that you can use as a reference for your project. We 
 - **created_at** (DateTime): The timestamp indicating when the comment was made.
 - **parent_comment_id** (Foreign Key, Nullable, references Comments Table): For nested replies, this field indicates the comment to which this comment is replying.
 
+#### Example Comment Structure
+| comment_id | event_id | user_id | comment_text          | created_at          | parent_comment_id |
+|------------|----------|---------|-----------------------|---------------------|-------------------|
+| 1          | 101      | 201     | "This event looks fun!" | 2024-10-25 10:00:00 | NULL              |
+| 2          | 101      | 202     | "What time does it start?" | 2024-10-25 10:05:00 | 1                 |
+| 3          | 101      | 203     | "Can't wait to attend!" | 2024-10-25 10:10:00 | NULL              |
+| 4          | 101      | 204     | "It starts at 6 PM."    | 2024-10-25 10:15:00 | 2                 |
+| 5          | 101      | 202     | "Great, thanks!"       | 2024-10-25 10:20:00 | 4                 |
+
+In this example:
+- **Comment 1** is a root-level comment.
+- **Comment 2** is a reply to **Comment 1**.
+- **Comment 4** is a reply to **Comment 2**, creating a nested reply structure.
+- **Comment 5** is a further reply to **Comment 4**, demonstrating multi-level threading.
+
 ### 📑 Summary
 This schema provides a good foundation to start building your Event Management System:
 - **Reserved Keywords**: Avoid using reserved keywords such as `user` or `date`.
